@@ -2,14 +2,11 @@ import os
 from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
-# Ottieni il token dalla variabile d'ambiente
-TOKEN = os.getenv("TOKEN")
-
-# Controllo per verificare se il token è stato letto correttamente
+TOKEN = os.environ.get("TOKEN")
 if not TOKEN:
-    raise ValueError("Errore: Il token non è stato trovato. Controlla le variabili d'ambiente!")
+    raise ValueError("Errore: Il token non è stato trovato!")
 else:
-    print(f"Token trovato: {TOKEN}")
+    print(f"Token trovato: {TOKEN}"
 
 # Funzione per anonimizzare i messaggi
 async def anonymize_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
