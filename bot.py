@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
 # Ottieni il token dalle variabili d'ambiente
-TOKEN = "7779251467:AAGlBw6yDxCKSBmMZt0sB5Y8aRc_ZtEX-Wc" 
+TOKEN = os.getenv("TOKEN")
 
 # Funzione per anonimizzare i messaggi
 async def anonymize_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
