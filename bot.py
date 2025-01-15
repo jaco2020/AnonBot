@@ -2,7 +2,7 @@ import os
 from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
-TOKEN = os.environ.get("TOKEN")
+TOKEN = os.environ['TOKEN']
 if not TOKEN:
     raise ValueError("Errore: Il token non è stato trovato!")
 else:
