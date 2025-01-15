@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import Updater, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, MessageHandler, filters, CallbackContext
 
 # Inserisci il token del tuo bot qui
 TOKEN = "INSERISCI_IL_TUO_TOKEN"
@@ -20,7 +20,7 @@ def main():
     dispatcher = updater.dispatcher
 
     # Aggiungi un handler per gestire i messaggi di testo
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, anonymize_message))
+    dispatcher.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, anonymize_message))
 
     # Avvia il bot
     updater.start_polling()
