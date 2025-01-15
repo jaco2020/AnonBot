@@ -8,7 +8,7 @@ TOKEN = "7779251467:AAGlBw6yDxCKSBmMZt0sB5Y8aRc_ZtEX-Wc"
 # Funzione per anonimizzare i messaggi
 async def anonymize_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     original_message = update.message.text
-    anon_message = f"Anonimo: {original_message}"
+    anon_message = original_message
     await context.bot.send_message(chat_id=update.message.chat_id, text=anon_message)
     await update.message.delete()
 
