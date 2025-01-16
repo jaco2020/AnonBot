@@ -40,13 +40,19 @@ async def anonymize_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Configura e avvia il bot
 def main():
     # Crea l'applicazione
-    application = Application.builder() \
-        .token(TOKEN) \
-        .read_timeout(10) \  # Configura il timeout di lettura
-        .write_timeout(10) \  # Configura il timeout di scrittura
-        .connect_timeout(5) \  # Configura il timeout di connessione
-        .pool_timeout(5) \  # Configura il timeout per il pool di connessioni
+    application = (
+        Application.builder()
+        .token(TOKEN)
+        # Configura il timeout di lettura
+        .read_timeout(10)
+        # Configura il timeout di scrittura
+        .write_timeout(10)
+        # Configura il timeout di connessione
+        .connect_timeout(5)
+        # Configura il timeout per il pool di connessioni
+        .pool_timeout(5)
         .build()
+    )
 
     # Aggiungi un handler per i messaggi di testo
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, anonymize_message))
