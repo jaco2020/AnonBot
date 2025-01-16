@@ -29,16 +29,21 @@ async def anonymize_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Logga le informazioni dell'utente e il messaggio
     logging.info(f"Messaggio ricevuto: ID={user_id}, Username={user_name}, Messaggio={original_message}")
-
-    # Invia il messaggio anonimizzato
-    await context.bot.send_message(chat_id=update.message.chat_id, text=original_message)
+    
     # Cancella il messaggio originale
     await update.message.delete()
+    
+    # Invia il messaggio anonimizzato
+    await context.bot.send_message(chat_id=update.message.chat_id, text=original_message)
+    
 
 # Configura e avvia il bot
 def main():
     # Crea l'applicazione
     application = Application.builder().token(TOKEN).build()
+    application.bot.defaults = {
+    "timeout": 1,  # Riduci il timeout a 1 secondo
+    }
 
     # Aggiungi un handler per i messaggi di testo
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, anonymize_message))
